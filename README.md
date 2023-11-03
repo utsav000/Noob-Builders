@@ -1,13 +1,25 @@
 # Noob-Builders
+Website:
 
-Financial Technology (FinTech):
+PaveChange: Bridging the Gap for Safer, Smarter Cities.
 
-In order to cater to the given parameters, I will now proceed to paraphrase and expand the text. 
+Welcome to the new age of Urban Issue Resolution
+Building Stronger Communities Together.
 
-Designing a blockchain-driven system offers a robust solution that ensures both security and transparency in
+Have an Issue? Complaint to us!
+Local-Safety-Infrastructure-Environment
 
-RephraseA useful solution for individuals seeking effective financial management is to develop a budgeting and financial planning application. This app will serve as a valuable tool to assist users in overseeing their financial affairs. By utilizing the app, individuals will be able
 
-RephraseIn an effort to clarify, let's work on expanding and rephrasing the given text about building a platform for small businesses to access affordable loans and financial services.
+Issues Resolved: 4000+
+Trusted Partners: 100+
+Cities in Operation: 50+
 
-The primary objective is the creation of a platform that facilitates small businesses
+
+Our Services:
+
+Request Management
+Credit System for Community Engagement
+Complaint Segregation
+Notification System
+
+

@@ -17,6 +17,7 @@ const LocalStrategy = require('passport-local');
 const User = require('./models/user');
 const helmet = require('helmet');
 const MongoStore = require('connect-mongo');
+const Complaint = require('./models/complaint');
 
 mongoose.set('strictQuery', false);
 
@@ -43,7 +44,7 @@ const ExpressError = require('./utils/ExpressError');
 
 // const dbURL = process.env.DB_URL
 // 
-const dbURL = process.env.DB_URL || 'mongodb://127.0.0.1:27017/yelp-camp';
+const dbURL = 'mongodb://127.0.0.1:27017/farmers';
 mongoose.connect(dbURL, {
     useNewUrlParser: true,
     useUnifiedTopology: true,
@@ -80,8 +81,8 @@ const store = MongoStore.create({
     }
 });
 
-store.on("error", function (e){
-       console.log("session error",e);
+store.on("error", function (e) {
+    console.log("session error", e);
 })
 
 const sessionConfig = {
@@ -140,9 +141,44 @@ app.get('/', (req, res) => {
     res.render('home')
 });
 
+// --------------------------
+app.get('/complaint', (req, res) => {
+    res.render('complaint')
+});
+
+
+app.post('/complaint',async(req, res) => {
+    try {
+        const { email, name, complaint } = req.body;
+        const user = new Complaint({ email, name, complaint });
+        // const registeredUser = await Complaint.register(user, password);
+        await user.save();
+        // req.login(registeredUser, err => {
+        //     if (err) {
+        //         return next(err);
+        //     }
+        //     req.flash('success', 'Welcome to Yelp Camp!');
+        //     res.redirect('/campgrounds');
+        // })
+        res.redirect('/campgrounds')
+    }
+
+    catch (e) {
+        req.flash('error', e.message);
+        res.redirect('register');
+    }
+
+
+})
+
+// -------------------
+
+
+
 app.use('/campgrounds', campgroundsRoutes);
 app.use('/campgrounds/:id/reviews', reviewsRoutes);
 app.use('/', userRoutes);
+
 
 
 

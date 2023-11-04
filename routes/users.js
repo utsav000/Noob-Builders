@@ -6,12 +6,14 @@ const { storeReturnTo } = require('../middleware');
 const users = require('../controllers/users');
 
 
+
 router.route('/register')
     .get(users.renderRegister)
     .post(catchAsync(users.register));
 
 router.route('/registeradmin')
     .get(users.renderRegisterAdmin)
+    .post(catchAsync(users.registerAdmin));
 
 router.route('/login')
     .get(users.renderLogin)
@@ -27,11 +29,6 @@ router.route('/login_choose')
 
 router.route('/Register_choose')
     .get(users.renderRegisterChoose);
-
-
-
-
-
 
 router.get('/logout', users.Logout);
 

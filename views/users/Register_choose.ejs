@@ -1,0 +1,128 @@
+<% layout('layouts/boilerplate')%>
+
+    <style>
+        .login {
+            background-image: url('https://images.unsplash.com/photo-1540910419892-4a36d2c3266c?auto=format&fit=crop&q=80&w=2370&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D');
+            height: 30em;
+            width: 35em;
+            background-size: cover;
+            background-repeat: no-repeat;
+            margin-right: 2em;
+        }
+
+        .Login_btn {
+            align-self: center;
+            appearance: none;
+            background-image: radial-gradient(100% 100% at 100% 0, #5adaff 0, #5468ff 100%);
+            border: 0;
+            border-radius: 6px;
+            box-shadow: rgba(45, 35, 66, .4) 0 2px 4px, rgba(45, 35, 66, .3) 0 7px 13px -3px, rgba(58, 65, 111, .5) 0 -3px 0 inset;
+            box-sizing: border-box;
+            color: #fff;
+            cursor: pointer;
+            display: inline-flex;
+            font-family: "JetBrains Mono", monospace;
+            height: 48px;
+            justify-content: center;
+            line-height: 1;
+            list-style: none;
+            overflow: hidden;
+            padding-left: 16px;
+            padding-right: 16px;
+            position: relative;
+            text-align: left;
+            text-decoration: none;
+            transition: box-shadow .15s, transform .15s;
+            user-select: none;
+            -webkit-user-select: none;
+            touch-action: manipulation;
+            white-space: nowrap;
+            will-change: box-shadow, transform;
+            font-size: 18px;
+            width: 10em;
+            padding-top: 0.7em;
+            margin-top: 1em;
+        }
+
+        .Login_btn:focus {
+            box-shadow: #3c4fe0 0 0 0 1.5px inset, rgba(45, 35, 66, .4) 0 2px 4px, rgba(45, 35, 66, .3) 0 7px 13px -3px, #3c4fe0 0 -3px 0 inset;
+        }
+
+        .Login_btn:hover {
+            box-shadow: rgba(45, 35, 66, .4) 0 4px 8px, rgba(45, 35, 66, .3) 0 7px 13px -3px, #3c4fe0 0 -3px 0 inset;
+            transform: translateY(-2px);
+        }
+
+        .Login_btn:active {
+            box-shadow: #3c4fe0 0 3px 7px inset;
+            transform: translateY(2px);
+        }
+
+        .col {
+            display: flex;
+            flex-direction: column;
+        }
+
+        .admin {
+            background-image: url('https://images.unsplash.com/photo-1609189881371-c5c4a0230745?auto=format&fit=crop&q=80&w=2487&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D');
+            height: 30em;
+            width: 35em;
+            background-size: cover;
+            background-repeat: no-repeat;
+            margin-top: 0;
+            margin-left: 2em;
+            display: flex;
+            justify-content: center;
+            align-items: end;
+
+        }
+
+
+        .admin_btn {
+            align-self: center;
+            font-family: inherit;
+            font-weight: 500;
+            font-size: 16px;
+            width: 10em;
+            padding: 0.7em 1.4em 0.7em 1.1em;
+            color: white;
+            background: #ad5389;
+            background: linear-gradient(0deg, rgba(20, 167, 62, 1) 0%, rgba(102, 247, 113, 1) 100%);
+            border: none;
+            box-shadow: 0 0.7em 1.5em -0.5em #14a73e98;
+            letter-spacing: 0.05em;
+            border-radius: 20em;
+            cursor: pointer;
+            user-select: none;
+            -webkit-user-select: none;
+            touch-action: manipulation;
+            margin-top: 1em;
+        }
+
+        .admin_btn:hover {
+            box-shadow: 0 0.5em 1.5em -0.5em #14a73e98;
+        }
+
+        .admin_btn:active {
+            box-shadow: 0 0.3em 1em -0.5em #14a73e98;
+        }
+    </style>
+
+    <div class="container text-center main">
+        <div class="row">
+            <div class="col">
+                <div class="login">
+                </div>
+                <a href="/register"><button class="Login_btn" role="button">Register As User</button></a>
+
+            </div>
+
+            <div class="col">
+                <div class="admin">
+                </div>
+                <a href="/registeradmin"><button class="admin_btn" role="button">Register As Admin</button></a>
+
+            </div>
+
+        </div>
+    </div>

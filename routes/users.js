@@ -10,6 +10,8 @@ router.route('/register')
     .get(users.renderRegister)
     .post(catchAsync(users.register));
 
+router.route('/registeradmin')
+    .get(users.renderRegisterAdmin)
 
 router.route('/login')
     .get(users.renderLogin)
@@ -19,6 +21,15 @@ router.route('/login')
 router.route('/loginadmin')
     .get(users.renderLoginAdmin)
     .post(storeReturnTo, passport.authenticate('local', { failureFlash: true, failureRedirect: '/loginadmin' }), users.LoginAdmin);
+
+router.route('/login_choose')
+    .get(users.renderLoginChoose);
+
+router.route('/Register_choose')
+    .get(users.renderRegisterChoose);
+
+
+
 
 
 

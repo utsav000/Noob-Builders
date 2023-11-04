@@ -26,6 +26,10 @@ module.exports.register = async (req, res,next) => {
 
 }
 
+module.exports.renderRegisterAdmin = (req,res) => {
+    res.render('users/registeradmin')
+}
+
 module.exports.renderLogin = (req, res) => {
     res.render('users/login');
 
@@ -35,6 +39,15 @@ module.exports.renderLoginAdmin = (req, res) => {
     res.render('users/loginadmin');
 
 }
+
+module.exports.renderLoginChoose = (req,res) => {
+    res.render('users/login_choose');
+}
+
+module.exports.renderRegisterChoose = (req,res) => {
+    res.render('users/Register_choose');
+}
+
 module.exports.Login = (req, res) => {
     req.flash('success', 'Welcome back');
     const redirectUrl = res.locals.returnTo || '/complaint';

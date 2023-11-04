@@ -3,7 +3,6 @@ if (process.env.NODE_ENV !== "production") {
 }
 
 
-
 const express = require("express");
 const app = express();
 const path = require('path');
@@ -147,10 +146,12 @@ app.get('/complaint', (req, res) => {
 });
 
 
-app.post('/complaint',async(req, res) => {
+app.post('/complaint', async (req, res) => {
     try {
-        const { email, name, complaint } = req.body;
-        const user = new Complaint({ email, name, complaint });
+
+        const { email, name, complaint, latitude, longitude } = req.body;
+        console.log(latitude);
+        const user = new Complaint({ email, name, complaint});
         // const registeredUser = await Complaint.register(user, password);
         await user.save();
         // req.login(registeredUser, err => {
@@ -167,11 +168,10 @@ app.post('/complaint',async(req, res) => {
         req.flash('error', e.message);
         res.redirect('register');
     }
-
-
 })
 
 // -------------------
+
 
 
 

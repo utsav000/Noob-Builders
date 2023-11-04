@@ -1,5 +1,6 @@
 
 const Campground = require('../models/campground');
+const Complaint = require('../models/complaint');
 const mbxGeocoding = require('@mapbox/mapbox-sdk/services/geocoding');
 const mapBoxToken = process.env.MAPBOX_TOKEN;
 const geocoder = mbxGeocoding({accessToken: mapBoxToken});
@@ -7,8 +8,8 @@ const { cloudinary } = require('../cloudinary');
 
 
 module.exports.index = async (req, res) => {
-    const campgrounds = await Campground.find({});
-    res.render('campgrounds/index', { campgrounds });
+    const complaints = await Complaint.find({});
+    res.render('campgrounds/index', { complaints });
 }
 
 module.exports.renderNewForm = (req, res) => {

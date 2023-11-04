@@ -3,10 +3,22 @@ const Schema = mongoose.Schema;
 
 
 const complaintSchema = new Schema({
-    name:String,
+    name: String,
     email: String,
-    complaint:String
-  
+    complaint: String,
+    geometry: {
+        type: {
+            type: String,
+            enum: ['Point'],
+            required: true
+        },
+
+        coordinates: {
+            type: [Number],
+            required: true
+        }
+    }
+
 });
 
-module.exports = mongoose.model('Complaint',complaintSchema);
+module.exports = mongoose.model('Complaint', complaintSchema);

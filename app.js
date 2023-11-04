@@ -17,7 +17,6 @@ const User = require('./models/user');
 const helmet = require('helmet');
 const MongoStore = require('connect-mongo');
 const Complaint = require('./models/complaint');
-
 mongoose.set('strictQuery', false);
 
 
@@ -149,10 +148,8 @@ app.get('/complaint', (req, res) => {
 app.post('/complaint', async (req, res) => {
     try {
 
-        const { email, name, complaint, latitude, longitude } = req.body;
-        console.log(latitude);
-        console.log(longitude);
-        const user = new Complaint({ email, name, complaint, geometry: { type: 'Point', coordinates: [longitude, latitude] } });
+        const { email, name, complaint, latitude, longitude, phone, category } = req.body;
+        const user = new Complaint({ email, name, complaint, geometry: { type: 'Point', coordinates: [longitude, latitude] }, phone, category });
         // const registeredUser = await Complaint.register(user, password);
         await user.save();
         // req.login(registeredUser, err => {
@@ -171,7 +168,41 @@ app.post('/complaint', async (req, res) => {
     }
 })
 
+const accountSid = "AC5bd5235dcd8c86fc6afb27d65bd62943";
+const authToken = "e229b73d3825590b61f5845f4ada7516";
+const client = require('twilio')(accountSid, authToken);
+
+const messsageres = (Phone) => {
+    const formattedPhone = `whatsapp:${Phone.replace(/[^0-9]/g, '')}`;
+     console.log(formattedPhone);
+    client.messages
+        .create({
+            from: 'whatsapp:+14155238886',
+            body: 'Hello, there!',
+            to: formattedPhone // Use the Phone variable here
+        })
+        .then(message => console.log(2))
+        .catch(error => console.error(error)); // Handle any errors
+}
+
+
+app.delete('/complaint/:id', async (req, res) => {
+    const { id } = req.params;
+    console.log(id);
+    const campground = await Complaint.findById(id);
+    const Phone = campground.phone;
+    messsageres(Phone);
+    console.log(`${Phone}`);
+    await Complaint.findByIdAndDelete(id);
+    req.flash('success', 'Complaint Resolved');
+    res.redirect('/campgrounds');
+})
+
 // -------------------
+
+
+
+
 
 
 

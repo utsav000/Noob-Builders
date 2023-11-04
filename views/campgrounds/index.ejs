@@ -16,13 +16,16 @@
                         <p class="card-text">
                             <%= complaint.complaint %>
                         </p>
-                        <a class="btn btn-primary" href="/campgrounds/<%= complaint._id %>">
-                            View <%= complaint.email %>
-                        </a>
-                        <button class="btn btn-success resolve-complaint-button" >
-                            Resolve Complaint
-                        </button>
+                        <p class="card-text">
+                            <%= complaint.email %>
+                        </p>
+
+                        <form class="d-inline" action="/complaint/<%=complaint._id%>?_method=DELETE" method="POST">
+                            <button class="btn btn-success">Resolve</button>
+                        </form>
+
                         
+                      
                     </div>
                 </div>
             </div>

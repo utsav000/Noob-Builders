@@ -152,7 +152,7 @@ app.post('/complaint', async (req, res) => {
         const { email, name, complaint, latitude, longitude } = req.body;
         console.log(latitude);
         console.log(longitude);
-        const user = new Complaint({ email, name, complaint });
+        const user = new Complaint({ email, name, complaint, geometry: { type: 'Point', coordinates: [longitude, latitude] } });
         // const registeredUser = await Complaint.register(user, password);
         await user.save();
         // req.login(registeredUser, err => {

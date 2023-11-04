@@ -9,8 +9,8 @@
         <% for(let complaint of complaints) {%>
             <div class="card  mb-3">
                 <div class="row">
-                    
-                    
+
+
 
                     <div class="col-md-8">
                         <div class="card-body">
@@ -22,7 +22,7 @@
                             <p class="card-text">
                                 <%= complaint.complaint %>
                             </p>
-                          
+
                             <a class="btn btn-primary" href="/campgrounds/<%=complaint._id%>">View
                                 <%=complaint.email%>
                             </a>
@@ -33,6 +33,15 @@
             <%}%>
     </ul>
 
-   
+    <script>
+
+        const mapToken = '<%-process.env.MAPBOX_TOKEN%>';
+        const complaints = { features: <%- JSON.stringify(complaints) %> };
+
+
+
+    </script>
+
+
 
     <script src="/javascripts/clusterMap.js"></script>

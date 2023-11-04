@@ -151,7 +151,8 @@ app.post('/complaint', async (req, res) => {
 
         const { email, name, complaint, latitude, longitude } = req.body;
         console.log(latitude);
-        const user = new Complaint({ email, name, complaint});
+        console.log(longitude);
+        const user = new Complaint({ email, name, complaint });
         // const registeredUser = await Complaint.register(user, password);
         await user.save();
         // req.login(registeredUser, err => {

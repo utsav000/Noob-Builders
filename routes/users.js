@@ -12,8 +12,14 @@ router.route('/register')
 
 
 router.route('/login')
-    .get( users.renderLogin)
-    .post( storeReturnTo, passport.authenticate('local', { failureFlash: true, failureRedirect: '/login' }), users.Login);
+    .get(users.renderLogin)
+    .post(storeReturnTo, passport.authenticate('local', { failureFlash: true, failureRedirect: '/login' }), users.Login);
+
+
+router.route('/loginadmin')
+    .get(users.renderLoginAdmin)
+    .post(storeReturnTo, passport.authenticate('local', { failureFlash: true, failureRedirect: '/loginadmin' }), users.LoginAdmin);
+
 
 
 router.get('/logout', users.Logout);

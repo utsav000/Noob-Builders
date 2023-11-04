@@ -31,13 +31,22 @@ module.exports.renderLogin = (req, res) => {
 
 }
 
+module.exports.renderLoginAdmin = (req, res) => {
+    res.render('users/loginadmin');
+
+}
 module.exports.Login = (req, res) => {
+    req.flash('success', 'Welcome back');
+    const redirectUrl = res.locals.returnTo || '/complaint';
+    delete req.session.returnTo;
+    res.redirect(redirectUrl);
+}
+module.exports.LoginAdmin = (req, res) => {
     req.flash('success', 'Welcome back');
     const redirectUrl = res.locals.returnTo || '/campgrounds';
     delete req.session.returnTo;
     res.redirect(redirectUrl);
 }
-
 module.exports.Logout = (req, res) => {
 
     req.logout(function (err) {

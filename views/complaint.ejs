@@ -79,26 +79,43 @@
                                 <form action="/complaint" method="POST" id="complaintForm">
                                     <h1 class="mb-3 h3">File a Complaint</h1>
 
-
                                     <div class="form-outline mb-4">
                                         <input type="text" name="name" id="formName" class="form-control" />
                                         <label class="form-label" for="formName">Your Name</label>
                                     </div>
-
+                                    
                                     <div class="form-outline mb-4">
                                         <input type="email" name="email" id="formEmail" class="form-control" />
                                         <label class="form-label" for="formEmail">Email Address</label>
                                     </div>
-
-
+                                    
                                     <div class="form-outline mb-4">
-                                        <textarea name="complaint" id="formComplaint" class="form-control"
-                                            rows="4"></textarea>
+                                        <input type="tel" name="phone" id="formPhone" class="form-control" />
+                                        <label class="form-label" for="formPhone">Phone Number</label>
+                                    </div>
+                                    
+                                    <div class="form-outline mb-4">
+                                        <textarea name="complaint" id="formComplaint" class="form-control" rows="4"></textarea>
                                         <label class="form-label" for="formComplaint">Your Complaint</label>
                                     </div>
+                                    
+                                    <div class="form-outline mb-4">
+                                        <select name="category" id="formCategory" class="form-select">
+                                            <option value="" disabled selected>Select Category</option>
+                                            <option value="complaint">Complaint</option>
+                                            <option value="feedback">Feedback</option>
+                                            <option value="inquiry">Inquiry</option>
+                                        </select>
+                                        <label class="form-label" for="formCategory">Category</label>
+                                    </div>
 
-
-
+                                    <div class="mb-3">
+                                        <label for="image">Upload Images</label>
+                                        <div class="input-group mb-3">
+                                            <input type="file" class="form-control" id="image" name="image" multiple>
+                                            <!-- <label class="input-group-text" for="image">Upload Images</label> -->
+                                        </div>
+                                    </div>
                                     <button type="button" onclick="getLocation()" autofocus>Try It</button>
 
 

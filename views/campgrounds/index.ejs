@@ -31,7 +31,9 @@
                                     method="POST">
                                     <button class="btn btn-success">Resolve</button>
                                 </form>
-                                         <% } %>
+                                <%}%>
+                                    <button class="btn btn-primary" id="incrementButton">Upvote</button>
+                                    <p>Upvotes: <span id="counter">0</span></p>
 
 
                         </div>
@@ -40,6 +42,20 @@
             </div>
             <% } %>
     </ul>
+
+    <script>
+        const counterElement = document.getElementById('counter');
+        const incrementButton = document.getElementById('incrementButton');
+    
+        let counter = 0;
+    
+        incrementButton.addEventListener('click', () => {
+        
+            counter++;
+           
+            counterElement.textContent = counter;
+        });
+    </script>
 
     <script>
         const mapToken = '<%-process.env.MAPBOX_TOKEN%>';

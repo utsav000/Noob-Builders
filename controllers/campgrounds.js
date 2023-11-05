@@ -13,7 +13,7 @@ module.exports.index = async (req, res) => {
         const d = req.user._id;
         const id = d.toString();
         const complaint = await User.findById(id);
-        console.log(complaint)
+        // console.log(complaint)
         isAdmin = complaint.admin;
     }
 

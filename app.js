@@ -20,6 +20,10 @@ const Complaint = require('./models/complaint');
 mongoose.set('strictQuery', false);
 const { isLoggedIn, validateCampground } = require('./middleware');
 
+const multer = require('multer');
+const { storage } = require('./cloudinary');
+const upload = multer({ storage });
+
 // ------------------save from exploits---
 
 const mongoSanitize = require('express-mongo-sanitize');
@@ -140,25 +144,20 @@ app.get('/', (req, res) => {
 });
 
 // --------------------------
-app.get('/complaint',isLoggedIn, (req, res) => {
+app.get('/complaint', isLoggedIn, (req, res) => {
     res.render('complaint')
 });
 
 
-app.post('/complaint', async (req, res) => {
+app.post('/complaint', upload.array('image'), async (req, res) => {
     try {
 
         const { email, name, complaint, latitude, longitude, phone, category } = req.body;
-        const user = new Complaint({ email, name, complaint, geometry: { type: 'Point', coordinates: [longitude, latitude] }, phone, category });
-        // const registeredUser = await Complaint.register(user, password);
+        const user = new Complaint({ email, name, complaint, geometry: { type: 'Point', coordinates: [longitude, latitude] }, phone, category, });
+        // user.images = req.files.map(f => ({ url: f.path, filename: f.filename }));
         await user.save();
-        // req.login(registeredUser, err => {
-        //     if (err) {
-        //         return next(err);
-        //     }
-        //     req.flash('success', 'Welcome to Yelp Camp!');
-        //     res.redirect('/campgrounds');
-        // })
+      
+        req.flash('success', 'Complaint Registered');
         res.redirect('/campgrounds')
     }
 
@@ -174,7 +173,7 @@ const client = require('twilio')(accountSid, authToken);
 
 const messsageres = (Phone) => {
     const formattedPhone = `whatsapp:${Phone.replace(/[^0-9]/g, '')}`;
-     console.log(formattedPhone);
+    console.log(formattedPhone);
     client.messages
         .create({
             from: 'whatsapp:+14155238886',

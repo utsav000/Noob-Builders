@@ -1,6 +1,6 @@
 const mongoose = require('mongoose');
 const Schema = mongoose.Schema;
-
+const opts = { toJSON: { virtuals: true } };
 const ImageSchema = new Schema({
     url: String,
     filename: String
@@ -15,7 +15,8 @@ const complaintSchema = new Schema({
     name: String,
     email: String,
     complaint: String,
-  
+    images: [ImageSchema],
+
     geometry: {
         type: {
             type: String,
@@ -28,9 +29,8 @@ const complaintSchema = new Schema({
             required: true
         }
     },
-    phone:String,
-    category:String,
-    images: [ImageSchema]
-});
+    phone: String,
+    category: String,
+}, opts);
 
 module.exports = mongoose.model('Complaint', complaintSchema);

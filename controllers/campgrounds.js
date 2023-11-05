@@ -1,17 +1,25 @@
 
 const Campground = require('../models/campground');
 const Complaint = require('../models/complaint');
+const User = require('../models/user');
 const mbxGeocoding = require('@mapbox/mapbox-sdk/services/geocoding');
 const mapBoxToken = process.env.MAPBOX_TOKEN;
 const geocoder = mbxGeocoding({accessToken: mapBoxToken});
 const { cloudinary } = require('../cloudinary');
 
-
 module.exports.index = async (req, res) => {
-    const complaints = await Complaint.find({});
-    res.render('campgrounds/index', { complaints });
-}
+    var isAdmin = 0
+    if (req.user) {
+        const d = req.user._id;
+        const id = d.toString();
+        const complaint = await User.findById(id);
+        console.log(complaint)
+        isAdmin = complaint.admin;
+    }
 
+    const complaints = await Complaint.find({});
+    res.render('campgrounds/index', { complaints, isAdmin });
+}
 module.exports.renderNewForm = (req, res) => {
     res.render('campgrounds/new');
 }

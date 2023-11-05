@@ -18,7 +18,7 @@ const helmet = require('helmet');
 const MongoStore = require('connect-mongo');
 const Complaint = require('./models/complaint');
 mongoose.set('strictQuery', false);
-
+const { isLoggedIn, validateCampground } = require('./middleware');
 
 // ------------------save from exploits---
 
@@ -140,7 +140,7 @@ app.get('/', (req, res) => {
 });
 
 // --------------------------
-app.get('/complaint', (req, res) => {
+app.get('/complaint',isLoggedIn, (req, res) => {
     res.render('complaint')
 });
 

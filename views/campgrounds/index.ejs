@@ -2,7 +2,7 @@
 
 <div id="cluster-map"></div>
 
-<h1>All Campgrounds</h1>
+<h1>All Complaints</h1>
 
 <ul>
     <% for(let complaint of complaints) { %>
@@ -32,40 +32,6 @@
         </div>
     <% } %>
 </ul>
-<script>
-    // Add a click event listener to the "Resolve Complaint" button
-    document.querySelectorAll('.resolve-complaint-button').forEach(button => {
-        button.addEventListener('click', async function () {
-            const { ObjectID } = require('mongodb');
-            const complaintId = new ObjectID();
-      
-            
-            const confirmation = confirm('Are you sure you want to resolve this complaint?');
-            
-            if (confirmation) {
-                try {
-                    const response = await fetch(`/complaints/${complaintId}`, {
-                        method: 'DELETE',
-                    });
-                
-
-                    if (response.ok) {
-                        // The complaint was successfully deleted
-                        this.closest('.complaint-container').remove();
-                    } else {
-                        const errorData = await response.json();
-                        console.error(errorData);
-                        alert('Failed to resolve the complaint.');
-                    }
-                } catch (error) {
-                    console.error(error);
-                    alert('An error occurred while deleting the complaint.');
-                }
-            }
-        });
-    });
-</script>
-
 
 <script>
     const mapToken = '<%-process.env.MAPBOX_TOKEN%>';

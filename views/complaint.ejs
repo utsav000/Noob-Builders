@@ -43,6 +43,11 @@
                     background-color: hsla(0, 0%, 100%, 0.9) !important;
                     backdrop-filter: saturate(200%) blur(25px);
                 }
+
+                .location {
+                    margin-top: -1.5em;
+                    margin-right: 3em;
+                }
             </style>
 
             <div class="container px-4 py-5 px-md-5 text-center text-lg-start my-5">
@@ -64,36 +69,38 @@
 
                         <div class="card bg-glass">
                             <div class="card-body px-4 py-5 px-md-5">
-                                <form action="/complaint" method="POST" id="complaintForm">
+                                <form action="/complaint" method="POST" id="complaintForm" novalidate
+                                    class="validated-form">
                                     <h1 class="mb-3 h3">File a Complaint</h1>
 
                                     <div class="form-outline mb-4">
-                                        <input type="text" name="name" id="formName" class="form-control" />
+                                        <input type="text" name="name" id="formName" class="form-control" required />
                                         <label class="form-label" for="formName">Your Name</label>
                                     </div>
 
                                     <div class="form-outline mb-4">
-                                        <input type="email" name="email" id="formEmail" class="form-control" />
+                                        <input type="email" name="email" id="formEmail" class="form-control" required />
                                         <label class="form-label" for="formEmail">Email Address</label>
                                     </div>
 
                                     <div class="form-outline mb-4">
-                                        <input type="tel" name="phone" id="formPhone" class="form-control" />
+                                        <input type="tel" name="phone" id="formPhone" class="form-control" required />
                                         <label class="form-label" for="formPhone">Phone Number</label>
                                     </div>
 
                                     <div class="form-outline mb-4">
-                                        <textarea name="complaint" id="formComplaint" class="form-control"
-                                            rows="4"></textarea>
+                                        <textarea name="complaint" id="formComplaint" class="form-control" rows="4"
+                                            required></textarea>
                                         <label class="form-label" for="formComplaint">Your Complaint</label>
                                     </div>
 
                                     <div class="form-outline mb-4">
-                                        <select name="category" id="formCategory" class="form-select">
+                                        <select name="category" id="formCategory" class="form-select" required>
                                             <option value="" disabled selected>Select Category</option>
-                                            <option value="complaint">Complaint</option>
-                                            <option value="feedback">Feedback</option>
-                                            <option value="inquiry">Inquiry</option>
+                                            <option value="complaint">Electricity Department</option>
+                                            <option value="feedback">Water and Sanitation Department</option>
+                                            <option value="inquiry">Road Safety Department</option>
+                                            <option value="inquiry">Traffic Department</option>
                                         </select>
                                         <label class="form-label" for="formCategory">Category</label>
                                     </div>
@@ -101,12 +108,21 @@
                                     <div class="mb-3">
                                         <label for="image">Upload Images</label>
                                         <div class="input-group mb-3">
-                                            <input type="file" class="form-control" id="image" name="image" multiple>
+                                            <input type="file" class="form-control" id="image" name="image" multiple
+                                                required>
                                             <!-- <label class="input-group-text" for="image">Upload Images</label> -->
                                         </div>
                                     </div>
-                                    <button type="button" onclick="getLocation()" autofocus>Try It</button>
 
+
+
+                                    <div class="form-check">
+                                        <input class="form-check-input" type="checkbox" value="" id="flexCheckDefault"
+                                            onclick="getLocation()">
+                                        <label class="form-check-label" for="flexCheckDefault">
+                                            GetLocation
+                                        </label>
+                                    </div>
 
                                     <button type="submit" class="btn btn-primary btn-block mb-4">
                                         Submit Complaint
